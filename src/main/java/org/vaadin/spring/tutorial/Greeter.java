@@ -15,12 +15,12 @@
  */
 package org.vaadin.spring.tutorial;
 
-import com.vaadin.flow.spring.annotation.SpringComponent;
-import com.vaadin.flow.spring.annotation.UIScope;
+import com.wcs.vaadin.flow.cdi.NormalUIScoped;
 
-@SpringComponent
-@UIScope
-public class Greeter {
+import java.io.Serializable;
+
+@NormalUIScoped
+public class Greeter implements Serializable {
 
     public String sayHello() {
         return "Hello from bean " + toString();

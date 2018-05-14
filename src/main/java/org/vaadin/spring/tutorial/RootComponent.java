@@ -15,10 +15,6 @@
  */
 package org.vaadin.spring.tutorial;
 
-import java.util.Locale;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Label;
@@ -28,13 +24,16 @@ import com.vaadin.flow.i18n.LocaleChangeObserver;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
 
+import javax.inject.Inject;
+import java.util.Locale;
+
 @Route("")
 public class RootComponent extends Div implements LocaleChangeObserver {
 
     private RouterLink link;
 
-    public RootComponent(@Autowired Greeter greeter,
-            @Autowired ExampleTemplate template) {
+    @Inject
+    public RootComponent(Greeter greeter, ExampleTemplate template) {
         Label greeting = new Label(greeter.sayHello());
         Style grretingStyle = greeting.getElement().getStyle();
         grretingStyle.set("display", "block");

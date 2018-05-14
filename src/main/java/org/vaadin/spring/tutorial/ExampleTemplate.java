@@ -15,28 +15,19 @@
  */
 package org.vaadin.spring.tutorial;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Scope;
-import org.vaadin.spring.tutorial.ExampleTemplate.ExampleModel;
-
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
-import com.vaadin.flow.spring.annotation.SpringComponent;
 import com.vaadin.flow.templatemodel.TemplateModel;
+import org.vaadin.spring.tutorial.ExampleTemplate.ExampleModel;
+
+import javax.inject.Inject;
 
 /**
  * Simple template example.
  */
 @Tag("example-template")
-/*
- * Pay attention!: the web resources are in the maven resources folder
- * META-INF/resources (one of the default web resources folder in Spring Boot).
- */
 @HtmlImport("frontend://ExampleTemplate.html")
-@SpringComponent
-@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class ExampleTemplate extends PolymerTemplate<ExampleModel> {
 
     /**
@@ -47,7 +38,8 @@ public class ExampleTemplate extends PolymerTemplate<ExampleModel> {
         void setMessage(String message);
     }
 
-    public ExampleTemplate(@Autowired Greeter bean) {
+    @Inject
+    public ExampleTemplate(Greeter bean) {
         // Set the initial value to the "message" property.
         getModel().setMessage(bean.sayHello());
     }

@@ -15,19 +15,18 @@
  */
 package org.vaadin.spring.tutorial;
 
+import com.vaadin.flow.i18n.I18NProvider;
+import com.wcs.vaadin.flow.cdi.VaadinServiceEnabled;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
-import org.springframework.stereotype.Component;
-
-import com.vaadin.flow.i18n.I18NProvider;
-
 /**
  * Simple implementation of {@link I18NProvider}.
  */
-@Component
+@VaadinServiceEnabled
 public class SimpleI18NProvider implements I18NProvider {
 
     @Override

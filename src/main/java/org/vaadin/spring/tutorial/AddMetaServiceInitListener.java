@@ -15,29 +15,23 @@
  */
 package org.vaadin.spring.tutorial;
 
+import com.vaadin.flow.server.BootstrapPageResponse;
+import com.vaadin.flow.server.ServiceInitEvent;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
-import com.vaadin.flow.server.BootstrapListener;
-import com.vaadin.flow.server.BootstrapPageResponse;
-import com.vaadin.flow.server.ServiceInitEvent;
-import com.vaadin.flow.server.VaadinServiceInitListener;
-import com.vaadin.flow.spring.annotation.SpringComponent;
+import javax.enterprise.event.Observes;
 
 /**
  * Appends {@code meta} tag to the bootstrap page.
  */
-@SpringComponent
-public class AddMetaServiceInitListener
-        implements VaadinServiceInitListener, BootstrapListener {
+public class AddMetaServiceInitListener {
 
-    @Override
-    public void serviceInit(ServiceInitEvent event) {
-        event.addBootstrapListener(this);
+    private void onServiceInit(@Observes ServiceInitEvent event) {
+        event.addBootstrapListener(this::modifyBootstrapPage);
     }
 
-    @Override
-    public void modifyBootstrapPage(BootstrapPageResponse response) {
+    private void modifyBootstrapPage(BootstrapPageResponse response) {
         Document document = response.getDocument();
         Element head = document.head();
         Element meta = head.appendElement("meta");

@@ -2,11 +2,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.vaadin.spring</groupId>
-    <artifactId>flow.tutorial</artifactId>
-    <name>Spring Flow tutorial</name>
+    <groupId>org.vaadin.cdi</groupId>
+    <artifactId>cdi.tutorial</artifactId>
+    <name>CDI Flow tutorial</name>
     <version>1.0.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -19,8 +19,6 @@
 
         <!-- Dependencies -->
         <vaadin.version>10.0.0.beta10</vaadin.version>
-        <jackson.version>2.9.2</jackson.version>
-        <spring-boot.version>2.0.0.RELEASE</spring-boot.version>
         <flow.maven.plugin.version>1.0.0.beta10</flow.maven.plugin.version>
     </properties>
 
@@ -28,11 +26,6 @@
         <pluginRepository>
             <id>vaadin-prereleases</id>
             <url>https://maven.vaadin.com/vaadin-prereleases</url>
-        </pluginRepository>
-
-        <pluginRepository>
-            <id>spring-milestone</id>
-            <url>https://repo.spring.io/milestone/</url>
         </pluginRepository>
     </pluginRepositories>
 
@@ -60,35 +53,18 @@
             <groupId>com.vaadin</groupId>
             <artifactId>vaadin-core</artifactId>
         </dependency>
-    
         <dependency>
-            <groupId>com.vaadin</groupId>
-            <artifactId>vaadin-spring-boot-starter</artifactId>
+            <groupId>com.wcs.vaadin</groupId>
+            <artifactId>flow-cdi-addon</artifactId>
+            <version>1.0.alpha3</version>
         </dependency>
-
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>7.0</version>
             <scope>provided</scope>
         </dependency>
-        <!-- Fix version conflicts between various dependencies -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
-        
+
         <!-- added to provide logging output -->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -99,11 +75,14 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring-boot.version}</version>
+                <groupId>org.apache.tomee.maven</groupId>
+                <artifactId>tomee-maven-plugin</artifactId>
+                <version>7.0.4</version>
+                <configuration>
+                    <tomeeClassifier>webprofile</tomeeClassifier>
+                    <context>ROOT</context>
+                </configuration>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-clean-plugin</artifactId>
@@ -146,6 +125,7 @@
                         <version>${flow.maven.plugin.version}</version>
                         <executions>
                             <execution>
+                                <phase>prepare-package</phase>
                                 <goals>
                                     <goal>copy-production-files</goal>
                                     <goal>package-for-production</goal>
@@ -155,15 +135,6 @@
                                 </configuration>
                             </execution>
                         </executions>
-                    </plugin>
-
-                    <plugin>
-                        <groupId>org.springframework.boot</groupId>
-                        <artifactId>spring-boot-maven-plugin</artifactId>
-                        <version>${spring-boot.version}</version>
-                        <configuration>
-                            <jvmArguments>-Dvaadin.productionMode</jvmArguments>
-                        </configuration>
                     </plugin>
                 </plugins>
             </build>

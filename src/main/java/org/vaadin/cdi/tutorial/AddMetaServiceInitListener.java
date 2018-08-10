@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.vaadin.spring.tutorial;
+package org.vaadin.cdi.tutorial;
 
 import com.vaadin.flow.server.BootstrapPageResponse;
 import com.vaadin.flow.server.ServiceInitEvent;
@@ -36,7 +36,7 @@ public class AddMetaServiceInitListener {
         Element head = document.head();
         Element meta = head.appendElement("meta");
         meta.attr("name", "keywords");
-        meta.attr("content", "Flow, Spring, Polymer");
+        meta.attr("content", "Flow, CDI, Polymer");
     }
 
 }

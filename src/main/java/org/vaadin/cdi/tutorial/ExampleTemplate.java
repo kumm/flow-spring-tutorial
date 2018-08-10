@@ -13,13 +13,13 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.vaadin.spring.tutorial;
+package org.vaadin.cdi.tutorial;
 
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.templatemodel.TemplateModel;
-import org.vaadin.spring.tutorial.ExampleTemplate.ExampleModel;
+import org.vaadin.cdi.tutorial.ExampleTemplate.ExampleModel;
 
 import javax.inject.Inject;
 

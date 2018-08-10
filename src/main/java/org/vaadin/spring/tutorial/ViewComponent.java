@@ -15,9 +15,9 @@
  */
 package org.vaadin.spring.tutorial;
 
+import com.vaadin.cdi.annotation.UIScoped;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.router.Route;
-import com.wcs.vaadin.flow.cdi.UIScoped;
 
 import javax.inject.Inject;
 

@@ -15,8 +15,8 @@
  */
 package org.vaadin.spring.tutorial;
 
+import com.vaadin.cdi.annotation.VaadinServiceEnabled;
 import com.vaadin.flow.i18n.I18NProvider;
-import com.wcs.vaadin.flow.cdi.VaadinServiceEnabled;
 
 import java.util.Arrays;
 import java.util.Collections;

@@ -15,7 +15,7 @@
  */
 package org.vaadin.spring.tutorial;
 
-import com.wcs.vaadin.flow.cdi.NormalUIScoped;
+import com.vaadin.cdi.annotation.NormalUIScoped;
 
 import java.io.Serializable;
 
